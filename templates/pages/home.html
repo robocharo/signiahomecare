@@ -3,23 +3,27 @@
 {% block content %}
 <section class="hero hero-home">
     <div class="hero-inner hero-split">
-        <div class="hero-content">
-            <span class="hero-badge"><i class="fa-solid fa-house-medical"></i> Minneapolis & Twin Cities</span>
-            <h1>Compassionate Care at Home</h1>
-            <p class="hero-subheadline">Signia Home Care helps families across Minneapolis and the Twin Cities live with dignity, safety, and independence.</p>
-            <p class="hero-supporting">We bring skilled nursing, personal care, and supportive services to your door—so you can stay where you feel most comfortable.</p>
-            <div class="hero-taglines">
-                <span><i class="fa-solid fa-heart"></i> Dignity</span>
-                <span><i class="fa-solid fa-shield-halved"></i> Safety</span>
-                <span><i class="fa-solid fa-house"></i> Independence</span>
-            </div>
-            <div class="hero-ctas">
-                <a href="{{ url_for('referral') }}" class="btn btn-primary">Make a Referral</a>
-                <a href="{{ url_for('contact') }}" class="btn btn-secondary">Contact Us</a>
+        <div class="hero-content-wrap">
+            <div class="hero-content">
+                <span class="hero-badge"><i class="fa-solid fa-house-medical"></i> Minneapolis & Twin Cities</span>
+                <h1>Compassionate Care at Home</h1>
+                <p class="hero-subheadline">Signia Home Care helps families across Minneapolis and the Twin Cities live with dignity, safety, and independence.</p>
+                <p class="hero-supporting">We bring skilled nursing, personal care, and supportive services to your door—so you can stay where you feel most comfortable.</p>
+                <div class="hero-taglines">
+                    <span><i class="fa-solid fa-heart"></i> Dignity</span>
+                    <span><i class="fa-solid fa-shield-halved"></i> Safety</span>
+                    <span><i class="fa-solid fa-house"></i> Independence</span>
+                </div>
+                <div class="hero-ctas">
+                    <a href="{{ url_for('referral') }}" class="btn btn-primary">Make a Referral</a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-secondary">Contact Us</a>
+                </div>
             </div>
         </div>
-        <div class="hero-image">
-            <img src="{{ url_for('static', filename='images/hero-home.jpg') }}" alt="Compassionate home care in Minneapolis and the Twin Cities">
+        <div class="hero-image-wrap">
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='images/hero-home.jpg') }}" alt="Compassionate home care in Minneapolis and the Twin Cities">
+            </div>
         </div>
     </div>
 </section>

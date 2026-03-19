@@ -2,20 +2,22 @@
 
 {% block content %}
 <section class="page-hero hero-service-detail">
-    <div class="container hero-inner">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="{{ url_for('services') }}">Services</a>
-            <span class="breadcrumb-sep">/</span>
-            <span>{{ service.title }}</span>
-        </nav>
-        {% if category %}
-        <span class="service-license-badge {{ category }}">
-            {% if category == 'comprehensive' %}Comprehensive Home Care{% else %}Basic 245D{% endif %}
-        </span>
-        {% endif %}
-        <h1>{{ content.hero_headline }}</h1>
-        <p class="hero-subheadline">{{ service.short_desc }}</p>
-        <p class="hero-supporting">Personalized care in the comfort of your home. Serving Minneapolis and the Twin Cities.</p>
+    <div class="hero-inner">
+        <div class="hero-panel hero-panel-service">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="{{ url_for('services') }}">Services</a>
+                <span class="breadcrumb-sep">/</span>
+                <span>{{ service.title }}</span>
+            </nav>
+            {% if category %}
+            <span class="service-license-badge {{ category }}">
+                {% if category == 'comprehensive' %}Comprehensive Home Care{% else %}Basic 245D{% endif %}
+            </span>
+            {% endif %}
+            <h1>{{ content.hero_headline }}</h1>
+            <p class="hero-subheadline">{{ service.short_desc }}</p>
+            <p class="hero-supporting">Personalized care in the comfort of your home. Serving Minneapolis and the Twin Cities.</p>
+        </div>
     </div>
 </section>
 
