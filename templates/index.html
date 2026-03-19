@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <main class="container">
+        <header class="page-header">
+            <h1>Calendar</h1>
+            <div class="month-nav">
+                <a href="{{ url_for('index', year=today.year, month=today.month) }}" class="today-btn">Today</a>
+                <a href="{{ url_for('index', year=prev_year, month=prev_month) }}" title="Previous month">&#9664;</a>
+                <h2>{{ month_name }}</h2>
+                <a href="{{ url_for('index', year=next_year, month=next_month) }}" title="Next month">&#9654;</a>
+            </div>
+        </header>
+
+        <section class="calendar-grid">
+            <div class="weekday">Sun</div>
+            <div class="weekday">Mon</div>
+            <div class="weekday">Tue</div>
+            <div class="weekday">Wed</div>
+            <div class="weekday">Thu</div>
+            <div class="weekday">Fri</div>
+            <div class="weekday">Sat</div>
+
+            {% for week in month_weeks %}
+                {% for day in week %}
+                    {% set day_key = day.isoformat() %}
+                    <article class="day-cell {% if day.month != active_month %}muted{% endif %} {% if day == today %}today{% endif %} {% if day < today %}past{% endif %}">
+                        <div class="day-header">
+                            <span>{{ day.day }}</span>
+                        </div>
+
+                        <ul class="events">
+                            {% for event in events_by_day.get(day_key, []) %}
+                                <li>
+                                    <strong>{{ event["title"] }}</strong>
+                                    {% if event["notes"] %}
+                                        <div class="notes">{{ event["notes"] }}</div>
+                                    {% endif %}
+                                    <div class="event-actions">
+                                        <form method="post" action="{{ url_for('delete_event', event_id=event['id']) }}" style="display:inline">
+                                            <input type="hidden" name="year" value="{{ day.year }}">
+                                            <input type="hidden" name="month" value="{{ day.month }}">
+                                            <button type="submit" class="link-button">Delete</button>
+                                        </form>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                        <form class="add-event-form" method="post" action="{{ url_for('add_event') }}">
+                            <input type="hidden" name="event_date" value="{{ day_key }}">
+                            <input type="text" name="title" placeholder="New event" required maxlength="80">
+                            <input type="text" name="notes" placeholder="Notes (optional)" maxlength="120">
+                            <button type="submit">Add</button>
+                        </form>
+                    </article>
+                {% endfor %}
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

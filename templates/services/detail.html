@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero hero-service-detail">
+    <div class="container hero-inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="{{ url_for('services') }}">Services</a>
+            <span class="breadcrumb-sep">/</span>
+            <span>{{ service.title }}</span>
+        </nav>
+        {% if category %}
+        <span class="service-license-badge {{ category }}">
+            {% if category == 'comprehensive' %}Comprehensive Home Care{% else %}Basic 245D{% endif %}
+        </span>
+        {% endif %}
+        <h1>{{ content.hero_headline }}</h1>
+        <p class="hero-subheadline">{{ service.short_desc }}</p>
+        <p class="hero-supporting">Personalized care in the comfort of your home. Serving Minneapolis and the Twin Cities.</p>
+    </div>
+</section>
+
+<section class="service-detail">
+    <div class="container">
+        <div class="service-detail-layout">
+            {# Sidebar - In this page #}
+            <aside class="service-sidebar">
+                <nav class="service-nav" aria-label="On this page">
+                    <h3>On this page</h3>
+                    <ul>
+                        <li><a href="#what-includes">What This Service Includes</a></li>
+                        <li><a href="#who-benefits">Who May Benefit</a></li>
+                        <li><a href="#how-helps">How It Helps</a></li>
+                        <li><a href="#what-expect">What to Expect</a></li>
+                        <li><a href="#why-signia">Why Choose Signia</a></li>
+                    </ul>
+                </nav>
+                <div class="cta-block cta-block-sidebar">
+                    <div class="cta-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                    <h2>Ready to Get Started?</h2>
+                    <p class="cta-tagline">Contact us to discuss your needs or make a referral.</p>
+                    <div class="cta-buttons">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-block">Contact Us</a>
+                        <a href="{{ url_for('referral') }}" class="btn btn-secondary btn-block">Make a Referral</a>
+                    </div>
+                </div>
+            </aside>
+
+            {# Main content - Card blocks #}
+            <div class="service-main">
+                <div class="service-blocks">
+                    <article class="service-block service-block-featured" id="what-includes">
+                        <div class="service-block-header">
+                            <div class="service-block-icon">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <h2>What This Service Includes</h2>
+                        </div>
+                        <div class="service-block-content">
+                            <p class="service-block-lead">{{ content.intro }}</p>
+                            {% if content.includes_list %}
+                            <ul class="service-block-list">
+                                {% for item in content.includes_list %}
+                                <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </article>
+
+                    <article class="service-block" id="who-benefits">
+                        <div class="service-block-header">
+                            <div class="service-block-icon">
+                                <i class="fa-solid fa-circle-user"></i>
+                            </div>
+                            <h2>Who May Benefit</h2>
+                        </div>
+                        <div class="service-block-content">
+                            <p>{{ content.who_benefits }}</p>
+                            {% if content.who_benefits_list %}
+                            <ul class="service-block-list">
+                                {% for item in content.who_benefits_list %}
+                                <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </article>
+
+                    <article class="service-block" id="how-helps">
+                        <div class="service-block-header">
+                            <div class="service-block-icon">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <h2>How It Helps</h2>
+                        </div>
+                        <div class="service-block-content">
+                            <p>{{ content.how_helps }}</p>
+                            {% if content.how_helps_list %}
+                            <ul class="service-block-list">
+                                {% for item in content.how_helps_list %}
+                                <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </article>
+
+                    <article class="service-block" id="what-expect">
+                        <div class="service-block-header">
+                            <div class="service-block-icon">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                            <h2>What to Expect</h2>
+                        </div>
+                        <div class="service-block-content">
+                            <p>{{ content.what_to_expect }}</p>
+                            {% if content.what_to_expect_list %}
+                            <ul class="service-block-list">
+                                {% for item in content.what_to_expect_list %}
+                                <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </article>
+
+                    <article class="service-block" id="why-signia">
+                        <div class="service-block-header">
+                            <div class="service-block-icon">
+                                <i class="fa-solid fa-hand-holding-heart"></i>
+                            </div>
+                            <h2>Why Choose Signia Home Care</h2>
+                        </div>
+                        <div class="service-block-content">
+                            <p>{{ content.why_signia }}</p>
+                            {% if content.why_signia_list %}
+                            <ul class="service-block-list">
+                                {% for item in content.why_signia_list %}
+                                <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </article>
+
+                    {% if content.disclaimer %}
+                    <div class="service-disclaimer-block">
+                        <i class="fa-solid fa-note-sticky"></i>
+                        <p>{{ content.disclaimer }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {# Related services #}
+                {% if related_services %}
+                <div class="related-services">
+                    <h2>Related Services</h2>
+                    <p>You may also be interested in these services from Signia Home Care.</p>
+                    <div class="related-services-grid">
+                        {% for s in related_services %}
+                        <a href="{{ url_for('service_detail', slug=s.slug) }}" class="related-service-card">
+                            <h4>{{ s.title }}</h4>
+                            <p>{{ s.short_desc }}</p>
+                            <span class="link-arrow">Learn more <i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {# CTA #}
+                <div class="cta-block">
+                    <div class="cta-icon"><i class="fa-solid fa-comments"></i></div>
+                    <h2>Ready to Learn More?</h2>
+                    <p class="cta-tagline">Contact us to discuss your needs or make a referral. We're here to help.</p>
+                    <div class="cta-buttons">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary">Contact Us</a>
+                        <a href="{{ url_for('referral') }}" class="btn btn-secondary">Make a Referral</a>
+                    </div>
+                </div>
+
+                <div class="service-back">
+                    <a href="{{ url_for('services') }}"><i class="fa-solid fa-arrow-left"></i> Back to All Services</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

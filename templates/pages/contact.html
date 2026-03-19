@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero hero-contact">
+    <div class="container hero-inner">
+        <span class="hero-badge"><i class="fa-solid fa-envelope"></i> Get in Touch</span>
+        <h1>Contact Us</h1>
+        <p class="hero-subheadline">We're here to answer your questions about care, referrals, and getting started.</p>
+        <p class="hero-supporting">Reach out by phone, email, or the form below. We respond within 1–2 business days and are happy to discuss your needs.</p>
+        <div class="hero-taglines hero-taglines-center">
+            <span><i class="fa-solid fa-phone"></i> Call</span>
+            <span><i class="fa-solid fa-envelope"></i> Email</span>
+            <span><i class="fa-solid fa-location-dot"></i> Minneapolis, MN</span>
+        </div>
+    </div>
+</section>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="container flash-messages">
+      {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<section class="contact-content">
+    <div class="container">
+        <div class="contact-intro">
+            <h2 class="contact-intro-headline">We're Happy to Help</h2>
+            <p class="contact-intro-tagline">Reach out anytime—we're here for you.</p>
+            <div class="contact-intro-reasons">
+                <div class="contact-reason"><i class="fa-solid fa-magnifying-glass"></i> Exploring care options</div>
+                <div class="contact-reason"><i class="fa-solid fa-circle-question"></i> Questions about our services</div>
+                <div class="contact-reason"><i class="fa-solid fa-hand-holding-heart"></i> Making a referral</div>
+            </div>
+            <div class="contact-intro-methods">
+                <a href="tel:{{ business.phone|replace('(', '')|replace(')', '')|replace(' ', '')|replace('-', '') }}" class="contact-method"><i class="fa-solid fa-phone"></i> Call</a>
+                <a href="mailto:{{ business.email }}" class="contact-method"><i class="fa-solid fa-envelope"></i> Email</a>
+                <a href="#contact-form" class="contact-method"><i class="fa-solid fa-pen-to-square"></i> Form below</a>
+            </div>
+        </div>
+        <div class="contact-layout">
+            <div class="contact-info-section">
+                <h2>Get in Touch</h2>
+                <div class="contact-details">
+                    <p><strong>{{ business.name }}</strong></p>
+                    <p>{{ business.address }}<br>{{ business.city }}, {{ business.state }} {{ business.zip }}</p>
+                    <p><strong>Phone:</strong> {{ business.phone }}</p>
+                    <p><strong>Fax:</strong> {{ business.fax }}</p>
+                    <p><strong>Email:</strong> <a href="mailto:{{ business.email }}">{{ business.email }}</a></p>
+                    <p><strong>Office Hours:</strong> {{ business.hours }}</p>
+                </div>
+                <div class="map-container">
+                    <iframe
+                        src="https://maps.google.com/maps?q={{ (business.address ~ ', ' ~ business.city ~ ', ' ~ business.state ~ ' ' ~ business.zip)|replace(' ', '+') }}&output=embed"
+                        width="100%"
+                        height="300"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Signia Home Care location">
+                    </iframe>
+                </div>
+            </div>
+            <div class="contact-form-section" id="contact-form">
+                <h2>Send a Message</h2>
+                <form action="{{ url_for('contact') }}" method="post" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="e.g., Question about care, Referral">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="5" required placeholder="How can we help?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

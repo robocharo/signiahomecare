@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero hero-home">
+    <div class="hero-inner hero-split">
+        <div class="hero-content">
+            <span class="hero-badge"><i class="fa-solid fa-house-medical"></i> Minneapolis & Twin Cities</span>
+            <h1>Compassionate Care at Home</h1>
+            <p class="hero-subheadline">Signia Home Care helps families across Minneapolis and the Twin Cities live with dignity, safety, and independence.</p>
+            <p class="hero-supporting">We bring skilled nursing, personal care, and supportive services to your door—so you can stay where you feel most comfortable.</p>
+            <div class="hero-taglines">
+                <span><i class="fa-solid fa-heart"></i> Dignity</span>
+                <span><i class="fa-solid fa-shield-halved"></i> Safety</span>
+                <span><i class="fa-solid fa-house"></i> Independence</span>
+            </div>
+            <div class="hero-ctas">
+                <a href="{{ url_for('referral') }}" class="btn btn-primary">Make a Referral</a>
+                <a href="{{ url_for('contact') }}" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="{{ url_for('static', filename='images/hero-home.jpg') }}" alt="Compassionate home care in Minneapolis and the Twin Cities">
+        </div>
+    </div>
+</section>
+
+<section class="intro-section">
+    <div class="container">
+        <div class="intro-block">
+            <h2 class="intro-headline">Trusted Home Care Across the Twin Cities</h2>
+            <p class="intro-lead">Signia Home Care is a trusted Minnesota home care provider serving individuals and families in Minneapolis, Maple Grove, Minnetonka, Wayzata, and surrounding Twin Cities communities.</p>
+            <p class="intro-supporting">We provide supportive home care services that help people stay safe and independent in the place they know best—their own home. Our compassionate caregivers work alongside families to deliver personalized care with respect and dignity.</p>
+        </div>
+    </div>
+</section>
+
+<section class="why-choose-section">
+    <div class="container">
+        <h2>Why Families Choose Signia Home Care</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">&#9829;</div>
+                <h3>Compassionate Caregivers</h3>
+                <p>Our team brings warmth, patience, and professionalism to every visit. We treat your loved ones like family.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">&#127968;</div>
+                <h3>Independence at Home</h3>
+                <p>We support people to live safely in their own homes—where they feel most comfortable and connected.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">&#10004;</div>
+                <h3>Personalized Support</h3>
+                <p>Every care plan is tailored to individual needs, preferences, and goals. No two clients are alike.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">&#127891;</div>
+                <h3>Trusted Minnesota Provider</h3>
+                <p>Licensed by the State of Minnesota. We meet strict standards for quality, safety, and care.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services-preview-section">
+    <div class="container">
+        <h2>Our Services</h2>
+        <p class="section-intro">We offer a wide range of home care services under our Comprehensive Home Care and Basic 245D licenses. Services may be available based on assessment, staff availability, and program fit.</p>
+        <div class="services-preview-grid">
+            <a href="{{ url_for('services') }}#comprehensive" class="service-preview-card">
+                <h3>Comprehensive Home Care</h3>
+                <p>Skilled nursing, therapy, personal care, medication management, and more—all in the comfort of home.</p>
+                <span class="link-arrow">Learn More &rarr;</span>
+            </a>
+            <a href="{{ url_for('services') }}#basic-245d" class="service-preview-card">
+                <h3>Basic 245D Services</h3>
+                <p>Companion services, homemaker support, respite care, and community living supports.</p>
+                <span class="link-arrow">Learn More &rarr;</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="compassionate-care-section">
+    <div class="container">
+        <h2>Compassionate Care at Home</h2>
+        <p>At Signia Home Care, we believe everyone deserves to age or live with disability in a place that feels like home. Our caregivers provide hands-on support with daily activities—from bathing and dressing to meal preparation and medication reminders—while honoring each person's dignity and preferences.</p>
+        <p>We focus on quality of life: safety, comfort, connection, and the ability to do what matters most. Whether you need a few hours of help each week or more comprehensive support, we're here to help.</p>
+    </div>
+</section>
+
+<section class="who-we-serve-section">
+    <div class="container">
+        <div class="who-we-serve-block">
+            <h2>Who We Serve</h2>
+            <p class="who-we-serve-intro">We serve individuals and families across the Twin Cities metro area, including Minneapolis, Maple Grove, Minnetonka, Wayzata, Edina, St. Louis Park, and surrounding communities.</p>
+            <div class="serve-grid">
+                <div class="serve-card">
+                    <div class="serve-card-icon"><i class="fa-solid fa-house-user"></i></div>
+                    <p>Adults and seniors who want to stay at home</p>
+                </div>
+                <div class="serve-card">
+                    <div class="serve-card-icon"><i class="fa-solid fa-wheelchair"></i></div>
+                    <p>Individuals with disabilities who need support</p>
+                </div>
+                <div class="serve-card">
+                    <div class="serve-card-icon"><i class="fa-solid fa-people-group"></i></div>
+                    <p>Families seeking respite or caregiver relief</p>
+                </div>
+                <div class="serve-card">
+                    <div class="serve-card-icon"><i class="fa-solid fa-hospital"></i></div>
+                    <p>People transitioning from hospital or rehab</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-block">
+            <div class="cta-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <h2>Refer Someone to Signia Home Care</h2>
+            <p class="cta-tagline">Hospitals, social workers, case managers, and families—we make referrals simple. Share your referral and we'll follow up promptly.</p>
+            <a href="{{ url_for('referral') }}" class="btn btn-primary btn-large">Make a Referral</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

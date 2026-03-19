@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero hero-careers">
+    <div class="container hero-inner">
+        <span class="hero-badge"><i class="fa-solid fa-briefcase"></i> Join Our Team</span>
+        <h1>Careers at Signia Home Care</h1>
+        <p class="hero-subheadline">You're caring, you're capable—make a difference in the lives of families across Minneapolis and the Twin Cities.</p>
+        <p class="hero-supporting">We're building a team of compassionate caregivers, nurses, and support staff who share our commitment to dignified, person-centered care.</p>
+    </div>
+</section>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="container flash-messages">
+      {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<section class="careers-content">
+    <div class="container">
+        {# Why Join Us #}
+        <div class="careers-intro">
+            <div class="careers-intro-inner">
+                <h2>Why Work at Signia Home Care</h2>
+                <p class="careers-intro-lead">Our caregivers and clinical staff are the foundation of our success. We provide dignified, person-centered home care across the Twin Cities—and we're dedicated to creating a supportive, rewarding work environment that values your skills and commitment.</p>
+                <p class="careers-intro-benefits">When you join our team, you'll enjoy:</p>
+                <ul class="careers-intro-highlights">
+                    <li><i class="fa-solid fa-dollar-sign"></i> Competitive pay</li>
+                    <li><i class="fa-solid fa-clock"></i> Flexible scheduling</li>
+                    <li><i class="fa-solid fa-graduation-cap"></i> Comprehensive training</li>
+                    <li><i class="fa-solid fa-heart"></i> The satisfaction of making a real difference in your community</li>
+                </ul>
+            </div>
+        </div>
+
+        {# Positions We're Hiring For #}
+        <div class="careers-positions">
+            <h2>Positions We're Hiring For</h2>
+            <p>We're always looking for qualified team members. Whether you're an experienced professional or new to home care, we want to hear from you.</p>
+            <div class="positions-grid">
+                <div class="position-card">
+                    <div class="position-icon"><i class="fa-solid fa-user-nurse"></i></div>
+                    <h3>Caregivers & Home Health Aides</h3>
+                    <p>Provide personal care, companionship, and daily living support. No experience required—we provide training.</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                    <h3>Nurses (RN & LPN)</h3>
+                    <p>Skilled nursing care, medication management, wound care, and care coordination in the home.</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <h3>Therapy & Rehabilitation</h3>
+                    <p>Physical therapists, occupational therapists, and speech-language pathologists for in-home care.</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                    <h3>Administrative & Support</h3>
+                    <p>Care coordination, scheduling, intake, and office support to keep our team running smoothly.</p>
+                </div>
+            </div>
+        </div>
+
+        {# Benefits #}
+        <div class="careers-benefits-section">
+            <h2>Benefits & Perks</h2>
+            <p>We invest in our team so you can focus on what matters—caring for others.</p>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <span>Competitive Pay</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Flexible Scheduling</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>Training & Development</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-people-group"></i>
+                    <span>Supportive Team</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Work in Your Community</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Meaningful Work</span>
+                </div>
+            </div>
+            <p class="benefits-note">Benefits may vary by position and employment status. We'll discuss specific offerings during the hiring process.</p>
+        </div>
+
+        {# Culture #}
+        <div class="careers-culture">
+            <h2>Our Culture</h2>
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <h3><i class="fa-solid fa-handshake"></i> United in Care</h3>
+                    <p>Be part of a team that values collaboration, mutual respect, and a shared commitment to excellence. We support each other so we can better support our clients.</p>
+                </div>
+                <div class="culture-card">
+                    <h3><i class="fa-solid fa-seedling"></i> Grow With Us</h3>
+                    <p>From onboarding to ongoing support, we're here to help you thrive. Come as you are—we provide the training and resources you need to succeed.</p>
+                </div>
+            </div>
+        </div>
+
+        {# Application #}
+        <div class="careers-application">
+            <h2>Apply Now</h2>
+            <p>Complete the form below and we'll be in touch. We review applications regularly and look forward to hearing from you.</p>
+            <form action="{{ url_for('careers') }}" method="post" class="careers-form">
+                <fieldset>
+                    <legend>Contact Information</legend>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="First and last name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="you@example.com">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" placeholder="Street address">
+                        </div>
+                    </div>
+                    <div class="form-row form-row-triple">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" name="state" placeholder="MN" maxlength="2">
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">ZIP Code</label>
+                            <input type="text" id="zip" name="zip" placeholder="55408" maxlength="10">
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Position & Availability</legend>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="position">Position of Interest</label>
+                            <select id="position" name="position">
+                                <option value="">Select a position...</option>
+                                <option value="Caregiver / Home Health Aide">Caregiver / Home Health Aide</option>
+                                <option value="Registered Nurse (RN)">Registered Nurse (RN)</option>
+                                <option value="Licensed Practical Nurse (LPN)">Licensed Practical Nurse (LPN)</option>
+                                <option value="Physical Therapist">Physical Therapist</option>
+                                <option value="Occupational Therapist">Occupational Therapist</option>
+                                <option value="Speech-Language Pathologist">Speech-Language Pathologist</option>
+                                <option value="Administrative / Support">Administrative / Support</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="employment_type">Employment Type</label>
+                            <select id="employment_type" name="employment_type">
+                                <option value="">Select...</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Per diem">Per diem</option>
+                                <option value="Flexible">Flexible</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="start_date">Earliest Start Date</label>
+                            <input type="text" id="start_date" name="start_date" placeholder="e.g., Immediately, 2 weeks">
+                        </div>
+                        <div class="form-group">
+                            <label for="experience_years">Years of Experience</label>
+                            <select id="experience_years" name="experience_years">
+                                <option value="">Select...</option>
+                                <option value="No experience">No experience</option>
+                                <option value="Less than 1 year">Less than 1 year</option>
+                                <option value="1-3 years">1–3 years</option>
+                                <option value="3-5 years">3–5 years</option>
+                                <option value="5+ years">5+ years</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Background</legend>
+                    <div class="form-group">
+                        <label for="certifications">Certifications / Licenses</label>
+                        <input type="text" id="certifications" name="certifications" placeholder="e.g., CNA, HHA, RN license number, CPR">
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Experience Summary</label>
+                        <input type="text" id="experience" name="experience" placeholder="Brief summary of your background and relevant experience">
+                    </div>
+                    <div class="form-group">
+                        <label for="how_heard">How Did You Hear About Us?</label>
+                        <select id="how_heard" name="how_heard">
+                            <option value="">Select...</option>
+                            <option value="Website">Website</option>
+                            <option value="Indeed">Indeed</option>
+                            <option value="Referral">Referral</option>
+                            <option value="Job fair">Job fair</option>
+                            <option value="Social media">Social media</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Additional Information</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us about yourself, your availability, or any questions"></textarea>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-primary btn-large">Submit Application</button>
+            </form>
+        </div>
+
+        <div class="cta-section">
+            <div class="cta-block">
+                <div class="cta-icon"><i class="fa-solid fa-circle-question"></i></div>
+                <h2>Questions About Careers?</h2>
+                <p class="cta-tagline">We're happy to answer your questions. Reach out by phone or email.</p>
+                <p class="cta-contact-info"><strong>Phone:</strong> <a href="tel:{{ business.phone|replace('(', '')|replace(')', '')|replace(' ', '')|replace('-', '') }}">{{ business.phone }}</a> &nbsp;|&nbsp; <strong>Email:</strong> <a href="mailto:{{ business.email }}">{{ business.email }}</a></p>
+                <div class="cta-buttons cta-buttons-extra-margin">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

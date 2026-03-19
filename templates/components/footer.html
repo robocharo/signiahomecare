@@ -1,0 +1,90 @@
+<footer class="site-footer">
+    <div class="footer-main">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+                        <span class="footer-logo-text">Signia Home Care</span>
+                    </div>
+                    <p class="footer-tagline">Compassionate, dignified home care in Minneapolis and the Twin Cities.</p>
+                    <div class="footer-hours">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>{{ business.hours }}</span>
+                    </div>
+                </div>
+                <div class="footer-nav-group">
+                    <h4>Navigate</h4>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('services') }}">Services</a></li>
+                        <li><a href="{{ url_for('referral') }}">Make a Referral</a></li>
+                        <li><a href="{{ url_for('careers') }}">Careers</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact-group">
+                    <h4>Get in Touch</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>{{ business.address }}, {{ business.city }}, {{ business.state }} {{ business.zip }}</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:{{ business.phone }}">{{ business.phone }}</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-fax"></i>
+                            <span>{{ business.fax }}</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:{{ business.email }}">{{ business.email }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.main-nav');
+    const backdrop = document.querySelector('.nav-backdrop');
+    const header = document.querySelector('.site-header');
+    const body = document.body;
+    if (toggle && nav) {
+        function openNav() {
+            toggle.setAttribute('aria-expanded', 'true');
+            nav.classList.add('open');
+            if (backdrop) backdrop.classList.add('visible');
+            if (header) header.classList.add('nav-open');
+            body.style.overflow = 'hidden';
+        }
+        function closeNav() {
+            toggle.setAttribute('aria-expanded', 'false');
+            nav.classList.remove('open');
+            if (backdrop) backdrop.classList.remove('visible');
+            if (header) header.classList.remove('nav-open');
+            body.style.overflow = '';
+        }
+        toggle.addEventListener('click', function() {
+            if (nav.classList.contains('open')) closeNav();
+            else openNav();
+        });
+        if (backdrop) backdrop.addEventListener('click', closeNav);
+        nav.querySelectorAll('a').forEach(function(a) {
+            a.addEventListener('click', function() {
+                if (window.innerWidth <= 768) closeNav();
+            });
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && nav.classList.contains('open')) closeNav();
+        });
+    }
+});
+</script>

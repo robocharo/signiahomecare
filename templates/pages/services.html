@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero hero-services">
+    <div class="container hero-inner">
+        <span class="hero-badge"><i class="fa-solid fa-list-check"></i> Comprehensive & 245D</span>
+        <h1>Our Services</h1>
+        <p class="hero-subheadline">A full range of home care services to support independence, safety, and quality of life.</p>
+        <p class="hero-supporting">From skilled nursing and therapy to personal care and homemaker support—we bring care to you.</p>
+        <div class="hero-taglines hero-taglines-center">
+            <span><i class="fa-solid fa-user-nurse"></i> Skilled Nursing</span>
+            <span><i class="fa-solid fa-heart-pulse"></i> Therapy</span>
+            <span><i class="fa-solid fa-house-chimney"></i> Personal Care</span>
+        </div>
+    </div>
+</section>
+
+{# Service Map / Wiring Diagram #}
+<section class="service-map-section">
+    <div class="container">
+        <h2 class="service-map-title">How Our Services Connect</h2>
+        <p class="service-map-desc">Signia Home Care offers two licensed service pathways. Many clients receive a combination of services from both.</p>
+        <div class="service-map">
+            <div class="map-node map-node-comprehensive">
+                <div class="map-node-inner">
+                    <i class="fa-solid fa-house-medical"></i>
+                    <h3>Comprehensive Home Care</h3>
+                    <p>MDH Licensed</p>
+                    <span class="map-badge">Skilled nursing, therapy, personal care, household support</span>
+                </div>
+            </div>
+            <div class="map-connector">
+                <div class="map-line"></div>
+                <span class="map-connector-label">Often combined</span>
+            </div>
+            <div class="map-node map-node-245d">
+                <div class="map-node-inner">
+                    <i class="fa-solid fa-people-group"></i>
+                    <h3>Basic 245D</h3>
+                    <p>DHS Licensed</p>
+                    <span class="map-badge">Companion, homemaker, respite, community living supports</span>
+                </div>
+            </div>
+        </div>
+        <div class="service-map-footer">
+            <a href="#comprehensive" class="map-jump-link"><i class="fa-solid fa-arrow-down"></i> Comprehensive Services</a>
+            <a href="#basic-245d" class="map-jump-link"><i class="fa-solid fa-arrow-down"></i> 245D Services</a>
+        </div>
+    </div>
+</section>
+
+{# Quick nav #}
+<nav class="services-quick-nav" aria-label="Services navigation">
+    <div class="container">
+        <a href="#comprehensive" class="quick-nav-link">Comprehensive Home Care</a>
+        <a href="#basic-245d" class="quick-nav-link">Basic 245D</a>
+        <a href="{{ url_for('contact') }}" class="quick-nav-link quick-nav-cta">Get Started</a>
+    </div>
+</nav>
+
+<section class="services-intro">
+    <div class="container">
+        <p>Signia Home Care offers supportive home care services under two license types: <strong>Comprehensive Home Care</strong> and <strong>Basic 245D</strong>. Services may be available based on assessment, staff availability, and program fit.</p>
+        <p>We serve Minneapolis, Minnesota and the greater Twin Cities area. Services are grouped by category below for easy browsing.</p>
+    </div>
+</section>
+
+{# Comprehensive Home Care - Grouped by category #}
+<section class="services-category" id="comprehensive">
+    <div class="container">
+        <div class="category-header">
+            <div class="category-badge comprehensive">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>Comprehensive Home Care</span>
+            </div>
+            <h2>Comprehensive Home Care Services</h2>
+            <p>Under our Comprehensive Home Care license from the Minnesota Department of Health, we may provide skilled nursing, therapy, personal care, and supportive services in a client's home.</p>
+        </div>
+
+        {% for group_key, group_info in service_groups.items() %}
+        {% if group_key in comprehensive_grouped and comprehensive_grouped[group_key] %}
+        <div class="service-group" data-group="{{ group_key }}">
+            <h3 class="service-group-title">
+                <i class="fa-solid fa-{{ group_info.icon }}"></i>
+                {{ group_info.label }}
+            </h3>
+            <div class="service-cards service-cards-enhanced">
+                {% for s in comprehensive_grouped[group_key] %}
+                <a href="{{ url_for('service_detail', slug=s.slug) }}" class="service-card service-card-enhanced">
+                    <div class="service-card-icon">
+                        <i class="fa-solid fa-{{ group_info.icon }}"></i>
+                    </div>
+                    <div class="service-card-body">
+                        <h4>{{ s.title }}</h4>
+                        <p>{{ s.short_desc }}</p>
+                        <span class="link-arrow">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+
+{# Basic 245D - Grouped by category #}
+<section class="services-category services-category-alt" id="basic-245d">
+    <div class="container">
+        <div class="category-header">
+            <div class="category-badge basic245d">
+                <i class="fa-solid fa-people-group"></i>
+                <span>Basic 245D</span>
+            </div>
+            <h2>Basic 245D Services</h2>
+            <p>Under our Basic 245D license from the Minnesota Department of Human Services, we may provide basic support services that help individuals with disabilities and those over 65 live safely in the community.</p>
+        </div>
+
+        {% for group_key, group_info in service_groups.items() %}
+        {% if group_key in basic245d_grouped and basic245d_grouped[group_key] %}
+        <div class="service-group" data-group="{{ group_key }}">
+            <h3 class="service-group-title">
+                <i class="fa-solid fa-{{ group_info.icon }}"></i>
+                {{ group_info.label }}
+            </h3>
+            <div class="service-cards service-cards-enhanced">
+                {% for s in basic245d_grouped[group_key] %}
+                <a href="{{ url_for('service_detail', slug=s.slug) }}" class="service-card service-card-enhanced">
+                    <div class="service-card-icon">
+                        <i class="fa-solid fa-{{ group_info.icon }}"></i>
+                    </div>
+                    <div class="service-card-body">
+                        <h4>{{ s.title }}</h4>
+                        <p>{{ s.short_desc }}</p>
+                        <span class="link-arrow">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+
+{# Related services wiring - internal links #}
+<section class="services-wiring-section">
+    <div class="container">
+        <h2>Related Services & Next Steps</h2>
+        <p>Many of our services work together. For example, personal care often pairs with homemaker services; medication management may complement nursing visits.</p>
+        <div class="wiring-links">
+            <div class="wiring-card">
+                <h4><i class="fa-solid fa-link"></i> Often Paired Together</h4>
+                <ul>
+                    <li><a href="{{ url_for('service_detail', slug='personal-care-adls') }}">Personal Care</a> + <a href="{{ url_for('service_detail', slug='homemaker-services') }}">Homemaker</a></li>
+                    <li><a href="{{ url_for('service_detail', slug='medication-management') }}">Medication Management</a> + <a href="{{ url_for('service_detail', slug='registered-nurse-services') }}">RN Services</a></li>
+                    <li><a href="{{ url_for('service_detail', slug='companion-services') }}">Companion</a> + <a href="{{ url_for('service_detail', slug='respite-care-services') }}">Respite</a></li>
+                </ul>
+            </div>
+            <div class="wiring-card">
+                <h4><i class="fa-solid fa-route"></i> Common Care Paths</h4>
+                <ul>
+                    <li>Post-hospital → <a href="{{ url_for('service_detail', slug='registered-nurse-services') }}">RN</a> + <a href="{{ url_for('service_detail', slug='physical-therapy-services') }}">PT</a></li>
+                    <li>Daily support → <a href="{{ url_for('service_detail', slug='personal-care-adls') }}">Personal Care</a> + <a href="{{ url_for('service_detail', slug='meal-preparation') }}">Meal Prep</a></li>
+                    <li>Caregiver relief → <a href="{{ url_for('service_detail', slug='respite-care-services') }}">Respite</a> + <a href="{{ url_for('service_detail', slug='companion-services') }}">Companion</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-block">
+            <div class="cta-icon"><i class="fa-solid fa-circle-question"></i></div>
+            <h2>Not Sure Which Service Is Right for You?</h2>
+            <p class="cta-tagline">We're happy to discuss your needs and help you understand your options. Reach out—we're here to help.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Contact Us</a>
+                <a href="{{ url_for('referral') }}" class="btn btn-secondary">Make a Referral</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

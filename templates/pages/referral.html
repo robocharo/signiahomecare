@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero hero-referral">
+    <div class="container hero-inner">
+        <span class="hero-badge"><i class="fa-solid fa-hand-holding-heart"></i> Partner With Us</span>
+        <h1>Make a Referral</h1>
+        <p class="hero-subheadline">We make it easy for hospitals, social workers, case managers, physicians, families, and community partners to refer clients to Signia Home Care.</p>
+        <p class="hero-supporting">Submit your referral below and we'll follow up within 1–2 business days. Simple, fast, and focused on getting people the care they need.</p>
+        <div class="hero-taglines hero-taglines-center">
+            <span><i class="fa-solid fa-hospital"></i> Hospitals</span>
+            <span><i class="fa-solid fa-user-tie"></i> Case Managers</span>
+            <span><i class="fa-solid fa-user-doctor"></i> Physicians</span>
+            <span><i class="fa-solid fa-house-user"></i> Families</span>
+        </div>
+    </div>
+</section>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="container flash-messages">
+      {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<section class="referral-content">
+    <div class="container">
+        {# Partner Types #}
+        <div class="referral-partners">
+            <h2>Who Can Make a Referral</h2>
+            <p class="referral-intro">We welcome referrals from a wide range of healthcare and community partners. Our intake team is ready to assist you.</p>
+            <div class="referral-partners-grid">
+                <div class="referral-partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-hospital"></i></div>
+                    <h3>Hospitals & Discharge Planners</h3>
+                    <p>Facilitate smooth transitions from hospital to home. We coordinate with your discharge team to ensure continuity of care.</p>
+                </div>
+                <div class="referral-partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    <h3>Social Workers & Case Managers</h3>
+                    <p>We work closely with care coordinators to match clients with the right services and support their care plans.</p>
+                </div>
+                <div class="referral-partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-user-doctor"></i></div>
+                    <h3>Physicians & Healthcare Providers</h3>
+                    <p>Physician referrals are prioritized. We'll keep you informed throughout the intake and care coordination process.</p>
+                </div>
+                <div class="referral-partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-house-user"></i></div>
+                    <h3>Families & Caregivers</h3>
+                    <p>Self-referrals welcome. If you or a loved one needs care at home, we're here to help you get started.</p>
+                </div>
+                <div class="referral-partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-building-community"></i></div>
+                    <h3>Community Organizations</h3>
+                    <p>Senior centers, churches, and community groups—we partner with organizations that serve our shared communities.</p>
+                </div>
+            </div>
+        </div>
+
+        {# Process Steps #}
+        <div class="referral-process">
+            <h2>How the Referral Process Works</h2>
+            <p class="referral-intro">From submission to care start, we keep the process straightforward and transparent.</p>
+            <div class="referral-process-steps">
+                <div class="process-step">
+                    <span class="step-number">1</span>
+                    <h3>Submit the Form</h3>
+                    <p>Complete the referral form with client information and care needs. Required fields are marked. You can also call us directly for urgent referrals.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">2</span>
+                    <h3>We Follow Up</h3>
+                    <p>Our intake team reviews referrals within 1–2 business days. We'll contact you to confirm receipt and discuss next steps.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">3</span>
+                    <h3>Assessment & Planning</h3>
+                    <p>We assess the client's needs, verify insurance or funding, and create a personalized care plan. We'll keep you updated throughout.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">4</span>
+                    <h3>Care Begins</h3>
+                    <p>When appropriate, we coordinate the start of care and introduce the care team. We remain in contact for ongoing coordination.</p>
+                </div>
+            </div>
+        </div>
+
+        {# Why Refer + Form Layout #}
+        <div class="referral-layout">
+            <div class="referral-info">
+                <h2>Why Refer to Signia Home Care</h2>
+                <ul class="referral-benefits">
+                    <li><i class="fa-solid fa-check-circle"></i> Licensed Minnesota provider (Comprehensive Home Care & Basic 245D)</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Compassionate, trained caregivers with background checks</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Serving Minneapolis and the greater Twin Cities</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Responsive communication—we return calls and emails promptly</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Person-centered care plans tailored to each client</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Coordination with physicians and care teams</li>
+                </ul>
+
+                <div class="referral-urgent">
+                    <h3><i class="fa-solid fa-phone-volume"></i> Urgent Referrals</h3>
+                    <p>For time-sensitive referrals, call us directly at <a href="tel:7633083282">{{ business.phone }}</a>. We prioritize hospital discharges and urgent care needs.</p>
+                </div>
+
+                <div class="hipaa-note">
+                    <h4><i class="fa-solid fa-shield-halved"></i> Privacy & HIPAA</h4>
+                    <p>We take privacy seriously. Please share only the information needed for the referral. Do not include protected health information beyond what is necessary for us to respond and assess fit. Our systems and processes are designed to protect sensitive information.</p>
+                </div>
+            </div>
+
+            <div class="referral-form-container">
+                <div class="referral-form-wrapper">
+                <h2>Referral Form</h2>
+                <p class="form-intro">Complete the form below. Fields marked with <span class="required">*</span> are required.</p>
+                <form action="{{ url_for('referral') }}" method="post" class="referral-form">
+                    <fieldset>
+                        <legend>Referrer Information</legend>
+                        <div class="form-group">
+                            <label for="referrer_name">Your Name <span class="required">*</span></label>
+                            <input type="text" id="referrer_name" name="referrer_name" required placeholder="Full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="referrer_type">Referrer Type</label>
+                            <select id="referrer_type" name="referrer_type">
+                                <option value="">Select...</option>
+                                <option value="Hospital / Discharge Planner">Hospital / Discharge Planner</option>
+                                <option value="Social Worker / Case Manager">Social Worker / Case Manager</option>
+                                <option value="Physician / Healthcare Provider">Physician / Healthcare Provider</option>
+                                <option value="Family / Caregiver">Family / Caregiver</option>
+                                <option value="Community Organization">Community Organization</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="organization">Organization</label>
+                            <input type="text" id="organization" name="organization" placeholder="e.g., Hospital, Agency, Clinic">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required placeholder="you@example.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferred_contact">Preferred Contact Method</label>
+                            <select id="preferred_contact" name="preferred_contact">
+                                <option value="">Select...</option>
+                                <option value="Phone">Phone</option>
+                                <option value="Email">Email</option>
+                                <option value="Either">Either</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Client Information</legend>
+                        <div class="form-group">
+                            <label for="client_name">Client Name</label>
+                            <input type="text" id="client_name" name="client_name" placeholder="Full name">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="client_phone">Client Phone</label>
+                                <input type="tel" id="client_phone" name="client_phone" placeholder="(555) 123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label for="client_email">Client Email</label>
+                                <input type="email" id="client_email" name="client_email" placeholder="client@example.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="client_address">Client Address / Service Location</label>
+                            <input type="text" id="client_address" name="client_address" placeholder="City, ZIP (full address if preferred)">
+                        </div>
+                        <div class="form-group">
+                            <label for="service_interest">Service of Interest</label>
+                            <select id="service_interest" name="service_interest">
+                                <option value="">Select a service...</option>
+                                <optgroup label="Comprehensive Home Care">
+                                    {% for s in services.comprehensive %}
+                                    <option value="{{ s.title }}">{{ s.title }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Basic 245D">
+                                    {% for s in services.basic_245d %}
+                                    <option value="{{ s.title }}">{{ s.title }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="urgency">Urgency</label>
+                            <select id="urgency" name="urgency">
+                                <option value="">Select...</option>
+                                <option value="Routine">Routine</option>
+                                <option value="Within 1-2 weeks">Within 1–2 weeks</option>
+                                <option value="Urgent (within days)">Urgent (within days)</option>
+                                <option value="Hospital discharge">Hospital discharge</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="insurance">Insurance / Funding (if known)</label>
+                            <input type="text" id="insurance" name="insurance" placeholder="e.g., Medicare, Medicaid, Private pay">
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Notes / Care Needs</label>
+                            <textarea id="notes" name="notes" rows="4" placeholder="Brief description of care needs, diagnoses, mobility, preferences, etc."></textarea>
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="btn btn-primary btn-block">Submit Referral</button>
+                </form>
+                </div>
+            </div>
+        </div>
+
+        {# FAQ #}
+        <div class="referral-faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4>How quickly will you respond?</h4>
+                    <p>We review referrals within 1–2 business days and will contact you to confirm receipt. For urgent referrals, call us directly at {{ business.phone }}.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What information do I need to provide?</h4>
+                    <p>At minimum, we need your name and contact information. Client name, service interest, and care needs help us respond faster. You can provide as much or as little as you're comfortable sharing.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I refer myself or a family member?</h4>
+                    <p>Yes. Self-referrals and family referrals are welcome. We'll guide you through the intake process and answer any questions.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you accept Medicare and Medicaid?</h4>
+                    <p>We work with various funding sources including Medicare, Medicaid, private pay, and long-term care insurance. Our intake team can discuss options during the assessment.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What areas do you serve?</h4>
+                    <p>We serve Minneapolis and the greater Twin Cities area, including Maple Grove, Minnetonka, Wayzata, Edina, St. Louis Park, and surrounding communities.</p>
+                </div>
+            </div>
+        </div>
+
+        {# Contact CTA #}
+        <section class="cta-section">
+            <div class="cta-block">
+                <div class="cta-icon"><i class="fa-solid fa-phone"></i></div>
+                <h2>Prefer to Talk?</h2>
+                <p class="cta-tagline">Call us at <a href="tel:{{ business.phone|replace('(', '')|replace(')', '')|replace(' ', '')|replace('-', '') }}">{{ business.phone }}</a> or email <a href="mailto:{{ business.email }}">{{ business.email }}</a>. We're happy to answer questions or take referrals over the phone.</p>
+                <div class="cta-buttons">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+{% endblock %}
