@@ -2,13 +2,14 @@
 
 {% block content %}
 <section class="hero hero-home">
-    <div class="hero-inner hero-split">
+    <div class="hero-inner hero-single">
         <div class="hero-content-wrap">
             <div class="hero-content">
                 <span class="hero-badge"><i class="fa-solid fa-house-medical"></i> Minneapolis & Twin Cities</span>
                 <h1>Compassionate Care at Home</h1>
-                <p class="hero-subheadline">Signia Home Care helps families across Minneapolis and the Twin Cities live with dignity, safety, and independence.</p>
-                <p class="hero-supporting">We bring skilled nursing, personal care, and supportive services to your door—so you can stay where you feel most comfortable.</p>
+                <p class="hero-subheadline">Signia Home Care helps families across Minneapolis and the Twin Cities live with dignity, safety, and independence. Licensed by the State of Minnesota for Comprehensive Home Care and Basic 245D services.</p>
+                <p class="hero-supporting">We bring skilled nursing, personal care, and supportive services to your door—so you can stay where you feel most comfortable. Whether you need a few hours of help each week or more comprehensive support, our trained caregivers work alongside families to deliver personalized care with respect and dignity.</p>
+                <p class="hero-supporting">Serving Minneapolis, Maple Grove, Minnetonka, Wayzata, Edina, St. Louis Park, and surrounding Twin Cities communities.</p>
                 <div class="hero-taglines">
                     <span><i class="fa-solid fa-heart"></i> Dignity</span>
                     <span><i class="fa-solid fa-shield-halved"></i> Safety</span>
@@ -18,11 +19,6 @@
                     <a href="{{ url_for('referral') }}" class="btn btn-primary">Make a Referral</a>
                     <a href="{{ url_for('contact') }}" class="btn btn-secondary">Contact Us</a>
                 </div>
-            </div>
-        </div>
-        <div class="hero-image-wrap">
-            <div class="hero-image">
-                <img src="{{ url_for('static', filename='images/hero-home.jpg') }}" alt="Compassionate home care in Minneapolis and the Twin Cities">
             </div>
         </div>
     </div>
